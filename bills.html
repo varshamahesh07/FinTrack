@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bills & Reminders – FinTrack</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <!-- Global Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Dashboard Layout Stylesheet -->
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <div class="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <span class="brand-icon">F</span>
+          <span>FinTrack</span>
+        </a>
+        <button id="sidebar-close" class="sidebar-close-btn" aria-label="Close Sidebar">&times;</button>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="menu-category">Main Menu</li>
+        <li class="menu-item">
+          <a href="dashboard.html" class="menu-link">
+            <span class="menu-icon">📊</span>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="planning.html" class="menu-link">
+            <span class="menu-icon">📝</span>
+            <span>Financial Planning</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="expenses.html" class="menu-link">
+            <span class="menu-icon">💳</span>
+            <span>Daily Expenses</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="savings.html" class="menu-link">
+            <span class="menu-icon">🎯</span>
+            <span>Savings</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="bills.html" class="menu-link active">
+            <span class="menu-icon">⏰</span>
+            <span>Bills & Reminders</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="reports.html" class="menu-link">
+            <span class="menu-icon">📈</span>
+            <span>Reports</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- User Profile Preview & Logout -->
+      <div class="sidebar-footer">
+        <div class="user-profile-preview">
+          <div class="user-avatar">AJ</div>
+          <div class="user-info">
+            <div class="user-name">Alex Johnson</div>
+            <div class="user-role">Student Account</div>
+          </div>
+        </div>
+        <button class="btn-sidebar-logout">
+          <span>🚪</span> Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button id="menu-toggle" class="menu-toggle-btn" aria-label="Open Menu">☰</button>
+          <div class="topbar-title">Bills & Reminders</div>
+        </div>
+
+        <div class="topbar-right">
+          <span id="topbar-current-date" class="topbar-date">Loading date...</span>
+          <a href="bills.html" class="notification-bell-btn" title="Pending Bills Notifications">
+            <span>🔔</span>
+            <span id="topbar-alert-count" class="notification-badge" style="display: none;">0</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="dashboard-content">
+        <div class="page-header">
+          <div>
+            <h1>Recurring Bills & Due Dates</h1>
+            <p>Track recurring obligations like Electricity, House Rent, Internet, and EMI to avoid late penalty charges.</p>
+          </div>
+        </div>
+
+        <!-- Reminder Summary Cards -->
+        <section class="stats-grid mb-3">
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Total Pending Payments</span>
+              <div class="metric-icon-box metric-icon-expenses">💵</div>
+            </div>
+            <div id="bills-summary-pending-amount" class="metric-value">$0.00</div>
+            <div class="metric-footer">Unpaid upcoming bills</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Due In Next 7 Days</span>
+              <div class="metric-icon-box metric-icon-planned">📅</div>
+            </div>
+            <div id="bills-summary-due-soon-count" class="metric-value">0 Bills</div>
+            <div class="metric-footer">Urgent attention needed</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Overdue Obligations</span>
+              <div class="metric-icon-box metric-icon-target">⚠️</div>
+            </div>
+            <div id="bills-summary-overdue-count" class="metric-value">0 Bills</div>
+            <div class="metric-footer">Past due date</div>
+          </div>
+        </section>
+
+        <!-- Main Layout: Table + Add Form -->
+        <div class="dashboard-row">
+          <!-- Bills Table Card -->
+          <div class="card">
+            <div class="card-header" style="flex-wrap: wrap; gap: 0.75rem;">
+              <div>
+                <h3>Scheduled Invoices & Bills</h3>
+                <span class="text-muted" style="font-size: 0.8rem;">Click button to toggle Paid / Pending</span>
+              </div>
+
+              <!-- Filter Selector -->
+              <div>
+                <select id="bill-filter-status" class="form-select" style="padding: 0.45rem 0.75rem; font-size: 0.85rem;">
+                  <option value="all">All Bills</option>
+                  <option value="pending">Only Pending / Due</option>
+                  <option value="paid">Only Settled (Paid)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Bill Name</th>
+                    <th>Amount</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Reminder</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="bills-table-body">
+                  <!-- Rendered dynamically by js/bills.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Add Bill Card Form -->
+          <div>
+            <div class="card">
+              <div class="card-header">
+                <h3>Add New Bill Reminder</h3>
+                <span class="badge badge-info">Scheduler</span>
+              </div>
+
+              <form id="add-bill-form">
+                <div class="form-group">
+                  <label for="bill-name" class="form-label">Bill / Payee Name</label>
+                  <input
+                    type="text"
+                    id="bill-name"
+                    class="form-control"
+                    placeholder="e.g. Electricity, House Rent, EMI"
+                    required
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label for="bill-amount" class="form-label">Amount ($)</label>
+                  <input
+                    type="number"
+                    id="bill-amount"
+                    class="form-control"
+                    placeholder="e.g. 85.00"
+                    min="0.01"
+                    step="0.01"
+                    required
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label for="bill-due-date" class="form-label">Due Date</label>
+                  <input type="date" id="bill-due-date" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="bill-frequency" class="form-label">Frequency</label>
+                  <select id="bill-frequency" class="form-select" required>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Quarterly">Quarterly</option>
+                    <option value="Annually">Annually</option>
+                    <option value="One-Time">One-Time</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="bill-status" class="form-label">Initial Status</label>
+                  <select id="bill-status" class="form-select" required>
+                    <option value="Pending">Pending</option>
+                    <option value="Paid">Paid</option>
+                  </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                  + Add Bill Schedule
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/bills.js"></script>
+</body>
+</html>

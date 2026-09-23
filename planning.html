@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financial Planning – FinTrack</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <!-- Global Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Dashboard Layout Stylesheet -->
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <div class="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <span class="brand-icon">F</span>
+          <span>FinTrack</span>
+        </a>
+        <button id="sidebar-close" class="sidebar-close-btn" aria-label="Close Sidebar">&times;</button>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="menu-category">Main Menu</li>
+        <li class="menu-item">
+          <a href="dashboard.html" class="menu-link">
+            <span class="menu-icon">📊</span>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="planning.html" class="menu-link active">
+            <span class="menu-icon">📝</span>
+            <span>Financial Planning</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="expenses.html" class="menu-link">
+            <span class="menu-icon">💳</span>
+            <span>Daily Expenses</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="savings.html" class="menu-link">
+            <span class="menu-icon">🎯</span>
+            <span>Savings</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="bills.html" class="menu-link">
+            <span class="menu-icon">⏰</span>
+            <span>Bills & Reminders</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="reports.html" class="menu-link">
+            <span class="menu-icon">📈</span>
+            <span>Reports</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- User Profile Preview & Logout -->
+      <div class="sidebar-footer">
+        <div class="user-profile-preview">
+          <div class="user-avatar">AJ</div>
+          <div class="user-info">
+            <div class="user-name">Alex Johnson</div>
+            <div class="user-role">Student Account</div>
+          </div>
+        </div>
+        <button class="btn-sidebar-logout">
+          <span>🚪</span> Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button id="menu-toggle" class="menu-toggle-btn" aria-label="Open Menu">☰</button>
+          <div class="topbar-title">Financial Planning</div>
+        </div>
+
+        <div class="topbar-right">
+          <span id="topbar-current-date" class="topbar-date">Loading date...</span>
+          <a href="bills.html" class="notification-bell-btn" title="Pending Bills Notifications">
+            <span>🔔</span>
+            <span id="topbar-alert-count" class="notification-badge" style="display: none;">0</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="dashboard-content">
+        <div class="page-header">
+          <div>
+            <h1>Monthly Budget Planning</h1>
+            <p>Allocate your anticipated monthly income into specific category envelopes and savings targets.</p>
+          </div>
+        </div>
+
+        <!-- Budget Status Alert Box -->
+        <div id="planning-status-message" class="alert alert-info">
+          Calculating budget distribution...
+        </div>
+
+        <!-- Planning Form & Summary Grid -->
+        <div class="dashboard-row">
+          <!-- Budget Allocation Form -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Budget Allocation Form</h3>
+              <span class="text-muted" style="font-size: 0.825rem;">Live Calculation Enabled</span>
+            </div>
+
+            <form id="budget-planning-form">
+              <!-- Monthly Income -->
+              <div class="form-group">
+                <label for="budget-income" class="form-label">
+                  <span>Monthly Inflow / Income ($)</span>
+                  <span class="text-muted" style="font-size: 0.8rem;">Stipend, salary, allowances</span>
+                </label>
+                <input
+                  type="number"
+                  id="budget-income"
+                  class="form-control"
+                  min="0"
+                  step="10"
+                  required
+                >
+              </div>
+
+              <h4 class="mb-2 mt-2" style="font-size: 1rem; color: var(--dark-navy);">Expense Category Budgets ($)</h4>
+
+              <div class="form-row">
+                <!-- Food Budget -->
+                <div class="form-group">
+                  <label for="budget-food" class="form-label">Food & Dining</label>
+                  <input type="number" id="budget-food" class="form-control" min="0" step="5" required>
+                </div>
+
+                <!-- Travel Budget -->
+                <div class="form-group">
+                  <label for="budget-travel" class="form-label">Travel & Transit</label>
+                  <input type="number" id="budget-travel" class="form-control" min="0" step="5" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <!-- Education Budget -->
+                <div class="form-group">
+                  <label for="budget-education" class="form-label">Education & Books</label>
+                  <input type="number" id="budget-education" class="form-control" min="0" step="5" required>
+                </div>
+
+                <!-- Bills Budget -->
+                <div class="form-group">
+                  <label for="budget-bills" class="form-label">Bills & Utilities</label>
+                  <input type="number" id="budget-bills" class="form-control" min="0" step="5" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <!-- Other Expenses Budget -->
+                <div class="form-group">
+                  <label for="budget-other" class="form-label">Other Discretionary</label>
+                  <input type="number" id="budget-other" class="form-control" min="0" step="5" required>
+                </div>
+
+                <!-- Savings Target -->
+                <div class="form-group">
+                  <label for="budget-savings" class="form-label">Planned Savings Target</label>
+                  <input type="number" id="budget-savings" class="form-control" min="0" step="10" required>
+                </div>
+              </div>
+
+              <div class="d-flex justify-between align-center mt-2">
+                <button type="button" id="btn-reset-planning" class="btn btn-secondary">
+                  Restore Defaults
+                </button>
+                <button type="submit" class="btn btn-primary">
+                  💾 Save Financial Plan
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Budget Summary Card -->
+          <div>
+            <div class="card mb-3">
+              <div class="card-header">
+                <h3>Allocation Breakdown</h3>
+                <span class="badge badge-info">Summary</span>
+              </div>
+
+              <div class="mb-3">
+                <div class="d-flex justify-between align-center py-2" style="border-bottom: 1px solid var(--slate-100);">
+                  <span class="text-muted">Expected Income</span>
+                  <strong id="stat-planned-income" class="text-dark">$0.00</strong>
+                </div>
+
+                <div class="d-flex justify-between align-center py-2" style="border-bottom: 1px solid var(--slate-100);">
+                  <span class="text-muted">Total Planned Expenses</span>
+                  <strong id="stat-total-planned-expenses" class="text-danger">$0.00</strong>
+                </div>
+
+                <div class="d-flex justify-between align-center py-2" style="border-bottom: 1px solid var(--slate-100);">
+                  <span class="text-muted">Planned Savings Allocation</span>
+                  <strong id="stat-savings-allocation" class="text-primary">$0.00</strong>
+                </div>
+
+                <div class="d-flex justify-between align-center py-2">
+                  <span class="text-muted fw-semibold">Unallocated Remaining</span>
+                  <strong id="stat-unallocated-remaining" class="metric-value" style="font-size: 1.25rem;">$0.00</strong>
+                </div>
+              </div>
+
+              <p class="text-muted" style="font-size: 0.825rem; line-height: 1.5;">
+                <strong>Pro-Tip:</strong> In zero-based budgeting, your goal is to have $0.00 unallocated remaining balance so every dollar has a defined job before the month starts.
+              </p>
+            </div>
+
+            <!-- Category Distribution Quick Advice Card -->
+            <div class="card">
+              <h4 class="mb-2" style="font-size: 1rem;">Budget Planning Guidelines</h4>
+              <ul style="padding-left: 1.25rem; font-size: 0.875rem; color: var(--slate-600); line-height: 1.6;">
+                <li>Aim to save at least <strong>20%</strong> of monthly income.</li>
+                <li>Keep essential utilities and bills under <strong>50%</strong>.</li>
+                <li>Allocate <strong>30%</strong> towards dining, hobbies, and learning resources.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/planning.js"></script>
+</body>
+</html>

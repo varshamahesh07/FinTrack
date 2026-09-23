@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports & Analytics – FinTrack</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <!-- Global Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Dashboard Layout Stylesheet -->
+  <link rel="stylesheet" href="css/dashboard.css">
+  <!-- Chart.js CDN for visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <div class="app-layout">
+    <div class="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <span class="brand-icon">F</span>
+          <span>FinTrack</span>
+        </a>
+        <button id="sidebar-close" class="sidebar-close-btn" aria-label="Close Sidebar">&times;</button>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="menu-category">Main Menu</li>
+        <li class="menu-item">
+          <a href="dashboard.html" class="menu-link">
+            <span class="menu-icon">📊</span>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="planning.html" class="menu-link">
+            <span class="menu-icon">📝</span>
+            <span>Financial Planning</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="expenses.html" class="menu-link">
+            <span class="menu-icon">💳</span>
+            <span>Daily Expenses</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="savings.html" class="menu-link">
+            <span class="menu-icon">🎯</span>
+            <span>Savings</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="bills.html" class="menu-link">
+            <span class="menu-icon">⏰</span>
+            <span>Bills & Reminders</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="reports.html" class="menu-link active">
+            <span class="menu-icon">📈</span>
+            <span>Reports</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- User Profile Preview & Logout -->
+      <div class="sidebar-footer">
+        <div class="user-profile-preview">
+          <div class="user-avatar">AJ</div>
+          <div class="user-info">
+            <div class="user-name">Alex Johnson</div>
+            <div class="user-role">Student Account</div>
+          </div>
+        </div>
+        <button class="btn-sidebar-logout">
+          <span>🚪</span> Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button id="menu-toggle" class="menu-toggle-btn" aria-label="Open Menu">☰</button>
+          <div class="topbar-title">Financial Reports</div>
+        </div>
+
+        <div class="topbar-right">
+          <span id="topbar-current-date" class="topbar-date">Loading date...</span>
+          <a href="bills.html" class="notification-bell-btn" title="Pending Bills Notifications">
+            <span>🔔</span>
+            <span id="topbar-alert-count" class="notification-badge" style="display: none;">0</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="dashboard-content">
+        <div class="page-header">
+          <div>
+            <h1>Financial Health Reports & Analytics</h1>
+            <p>Comprehensive analytical view of your income, expense distribution, and multi-month comparison.</p>
+          </div>
+          <button id="btn-print-report" class="btn btn-secondary btn-sm">
+            🖨️ Print / Save Report
+          </button>
+        </div>
+
+        <!-- KPI Scorecard Cards -->
+        <section class="stats-grid mb-3">
+          <!-- Monthly Income -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Monthly Income</span>
+              <div class="metric-icon-box metric-icon-income">💵</div>
+            </div>
+            <div id="report-monthly-income" class="metric-value">$0.00</div>
+            <div class="metric-footer">Baseline inflow</div>
+          </div>
+
+          <!-- Monthly Expenses -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Monthly Expenses</span>
+              <div class="metric-icon-box metric-icon-expenses">💳</div>
+            </div>
+            <div id="report-monthly-expenses" class="metric-value">$0.00</div>
+            <div class="metric-footer">Logged spending</div>
+          </div>
+
+          <!-- Total Savings -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Total Savings</span>
+              <div class="metric-icon-box metric-icon-savings">💰</div>
+            </div>
+            <div id="report-total-savings" class="metric-value">$0.00</div>
+            <div class="metric-footer">Accumulated funds</div>
+          </div>
+
+          <!-- Remaining Budget -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Remaining Budget</span>
+              <div class="metric-icon-box metric-icon-budget">🛡️</div>
+            </div>
+            <div id="report-remaining-budget" class="metric-value">$0.00</div>
+            <div class="metric-footer">Net unspent balance</div>
+          </div>
+
+          <!-- Savings Rate Score -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Savings Rate</span>
+              <div class="metric-icon-box metric-icon-target">🎯</div>
+            </div>
+            <div id="report-savings-rate" class="metric-value">0%</div>
+            <div class="metric-footer">Target recommended: ≥ 20%</div>
+          </div>
+        </section>
+
+        <!-- Charts Grid -->
+        <div class="dashboard-row">
+          <!-- Category-wise Expense Chart (Doughnut) -->
+          <div class="card chart-card">
+            <div class="card-header">
+              <h3>Category-Wise Expense Distribution</h3>
+              <span class="badge badge-info">Chart.js</span>
+            </div>
+            <div class="chart-wrapper" style="height: 270px;">
+              <canvas id="categoryExpenseChart"></canvas>
+            </div>
+            <!-- Category List Breakdown -->
+            <div id="category-breakdown-list" style="margin-top: 1rem;">
+              <!-- Populated dynamically by js/reports.js -->
+            </div>
+          </div>
+
+          <!-- Multi-Month Expense Trend Chart (Bar) -->
+          <div class="card chart-card">
+            <div class="card-header">
+              <h3>Multi-Month Financial Comparison</h3>
+              <span class="badge badge-info">Historical View</span>
+            </div>
+            <div class="chart-wrapper" style="height: 320px;">
+              <canvas id="monthlyComparisonChart"></canvas>
+            </div>
+            <div class="mt-2" style="font-size: 0.825rem; color: var(--slate-500); line-height: 1.5;">
+              <strong>Analytical Insight:</strong> Tracking the delta between total income (green), expenses (red), and allocated savings (blue) across consecutive months helps identify seasonal spending spikes.
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/reports.js"></script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard – FinTrack</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <!-- Global Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Dashboard Layout Stylesheet -->
+  <link rel="stylesheet" href="css/dashboard.css">
+  <!-- Chart.js CDN for visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <span class="brand-icon">F</span>
+          <span>FinTrack</span>
+        </a>
+        <button id="sidebar-close" class="sidebar-close-btn" aria-label="Close Sidebar">&times;</button>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="menu-category">Main Menu</li>
+        <li class="menu-item">
+          <a href="dashboard.html" class="menu-link active">
+            <span class="menu-icon">📊</span>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="planning.html" class="menu-link">
+            <span class="menu-icon">📝</span>
+            <span>Financial Planning</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="expenses.html" class="menu-link">
+            <span class="menu-icon">💳</span>
+            <span>Daily Expenses</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="savings.html" class="menu-link">
+            <span class="menu-icon">🎯</span>
+            <span>Savings</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="bills.html" class="menu-link">
+            <span class="menu-icon">⏰</span>
+            <span>Bills & Reminders</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="reports.html" class="menu-link">
+            <span class="menu-icon">📈</span>
+            <span>Reports</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- User Profile Preview & Logout -->
+      <div class="sidebar-footer">
+        <div class="user-profile-preview">
+          <div class="user-avatar">AJ</div>
+          <div class="user-info">
+            <div class="user-name">Alex Johnson</div>
+            <div class="user-role">Student Account</div>
+          </div>
+        </div>
+        <button class="btn-sidebar-logout">
+          <span>🚪</span> Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <!-- Topbar Header -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button id="menu-toggle" class="menu-toggle-btn" aria-label="Open Menu">☰</button>
+          <div class="topbar-title">Overview Dashboard</div>
+        </div>
+
+        <div class="topbar-right">
+          <span id="topbar-current-date" class="topbar-date">Loading date...</span>
+          <a href="bills.html" class="notification-bell-btn" title="Pending Bills Notifications">
+            <span>🔔</span>
+            <span id="topbar-alert-count" class="notification-badge" style="display: none;">0</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- Dashboard Main Content -->
+      <main class="dashboard-content">
+        <!-- Page Title Header -->
+        <div class="page-header">
+          <div>
+            <h1>Financial Summary</h1>
+            <p>Welcome back! Here is a breakdown of your current month's budget, spending, and savings.</p>
+          </div>
+          <div class="d-flex gap-2">
+            <a href="expenses.html" class="btn btn-primary btn-sm">+ Log Expense</a>
+            <a href="planning.html" class="btn btn-secondary btn-sm">Adjust Budget</a>
+          </div>
+        </div>
+
+        <!-- Budget Health Status Banner -->
+        <div id="dashboard-budget-status" class="alert alert-info">
+          Loading budget status...
+        </div>
+
+        <!-- 6 Summary Metric Cards -->
+        <section class="stats-grid">
+          <!-- Card 1: Total Income -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Total Income</span>
+              <div class="metric-icon-box metric-icon-income">💵</div>
+            </div>
+            <div id="metric-total-income" class="metric-value">$0.00</div>
+            <div class="metric-footer">
+              <span>Monthly planned inflow</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Planned Expenses -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Planned Expenses</span>
+              <div class="metric-icon-box metric-icon-planned">📑</div>
+            </div>
+            <div id="metric-planned-expenses" class="metric-value">$0.00</div>
+            <div class="metric-footer">
+              <span>Allocated budget ceiling</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Actual Expenses -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Actual Expenses</span>
+              <div class="metric-icon-box metric-icon-expenses">💳</div>
+            </div>
+            <div id="metric-actual-expenses" class="metric-value">$0.00</div>
+            <div class="metric-footer">
+              <span>Total spent to date</span>
+            </div>
+          </div>
+
+          <!-- Card 4: Remaining Budget -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Remaining Budget</span>
+              <div class="metric-icon-box metric-icon-budget">🛡️</div>
+            </div>
+            <div id="metric-remaining-budget" class="metric-value">$0.00</div>
+            <div class="metric-footer">
+              <span>Income minus actual spending</span>
+            </div>
+          </div>
+
+          <!-- Card 5: Savings -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Savings</span>
+              <div class="metric-icon-box metric-icon-savings">💰</div>
+            </div>
+            <div id="metric-total-savings" class="metric-value">$0.00</div>
+            <div class="metric-footer">
+              <span>Current balance in goals</span>
+            </div>
+          </div>
+
+          <!-- Card 6: Savings Target -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Savings Target</span>
+              <div class="metric-icon-box metric-icon-target">🎯</div>
+            </div>
+            <div id="metric-savings-target" class="metric-value">$0.00</div>
+            <div class="metric-footer">
+              <span>Total goal milestones</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Main Chart & Alerts Row -->
+        <div class="dashboard-row">
+          <!-- Monthly Expense Chart -->
+          <div class="card chart-card">
+            <div class="card-header">
+              <h3>Monthly Expense Trend (Planned vs Actual)</h3>
+              <a href="reports.html" class="btn btn-sm btn-secondary">Full Analytics →</a>
+            </div>
+            <div class="chart-wrapper">
+              <canvas id="monthlyExpenseChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Financial Alerts Card -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Financial Alerts</h3>
+              <span class="badge badge-info">Live Status</span>
+            </div>
+            <div id="financial-alerts-list">
+              <!-- Rendered dynamically by js/dashboard.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Expenses & Upcoming Bills Row -->
+        <div class="dashboard-row">
+          <!-- Recent Expenses Table -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Recent Expenses</h3>
+              <a href="expenses.html" class="btn btn-sm btn-secondary">View All</a>
+            </div>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th class="text-right">Amount</th>
+                  </tr>
+                </thead>
+                <tbody id="recent-expenses-tbody">
+                  <!-- Rendered dynamically by js/dashboard.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Upcoming Bills Widget -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Upcoming Bills</h3>
+              <a href="bills.html" class="btn btn-sm btn-secondary">Manage</a>
+            </div>
+            <div id="upcoming-bills-list">
+              <!-- Rendered dynamically by js/dashboard.js -->
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Global Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

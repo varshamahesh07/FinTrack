@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinTrack – Personal Financial Management System</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <!-- Global Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Landing Page Stylesheet -->
+  <link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="landing-nav">
+    <div class="landing-nav-container">
+      <a href="index.html" class="landing-logo">
+        <span class="brand-icon">F</span>
+        <span>FinTrack</span>
+      </a>
+
+      <ul class="landing-nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#demo">Live Demo</a></li>
+      </ul>
+
+      <div class="landing-nav-cta">
+        <a href="login.html" class="btn btn-secondary btn-sm">Sign In</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-container">
+      <div>
+        <div class="hero-badge">
+          <span>🎓</span> Web Technology Project • 100% Client-Side
+        </div>
+        <h1 class="hero-title">
+          Take full control of your finances.
+          <span class="hero-tagline">Plan. Track. Save.</span>
+        </h1>
+        <p class="hero-description">
+          FinTrack is a modern, intuitive personal financial management system built to simplify budgeting, daily expense logging, savings goals, and bill due-date tracking.
+        </p>
+        <div class="hero-actions">
+          <a href="register.html" class="btn btn-primary">Create Free Account</a>
+          <a href="dashboard.html" class="btn btn-secondary">Explore Live Demo</a>
+        </div>
+      </div>
+
+      <!-- Hero Visual Teaser -->
+      <div class="hero-preview-card">
+        <div class="d-flex justify-between align-center mb-3">
+          <div>
+            <span class="text-muted" style="font-size: 0.8rem; text-transform: uppercase;">Total Balance</span>
+            <div style="font-size: 1.85rem; font-weight: 800; color: var(--dark-navy);">$4,250.00</div>
+          </div>
+          <span class="badge badge-success">+14.8% this month</span>
+        </div>
+
+        <div style="background-color: var(--slate-50); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.25rem;">
+          <div class="d-flex justify-between align-center mb-1" style="font-size: 0.85rem;">
+            <span>Monthly Budget Status</span>
+            <span class="fw-semibold text-success">Healthy (65% used)</span>
+          </div>
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill success" style="width: 65%;"></div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-between align-center" style="font-size: 0.875rem;">
+          <div>
+            <div class="text-muted" style="font-size: 0.75rem;">Active Savings Goal</div>
+            <strong>Coding Laptop Upgrade</strong>
+          </div>
+          <span class="badge badge-info">75% Funded</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features-section">
+    <div class="section-header">
+      <span class="section-tag">Powerful Simplicity</span>
+      <h2 class="section-title">Everything You Need To Build Healthy Money Habits</h2>
+      <p class="text-muted">Designed for students and young professionals who want clean, transparent personal accounting without clutter.</p>
+    </div>
+
+    <div class="features-grid">
+      <!-- Feature 1: Expense Tracking -->
+      <div class="feature-box">
+        <div class="feature-icon-wrapper" style="background-color: var(--danger-bg); color: var(--danger);">
+          💳
+        </div>
+        <h3 class="feature-title">Expense Tracking</h3>
+        <p class="feature-text">
+          Record everyday transactions with categories, dates, payment modes, and descriptions. Instantly filter, search, edit, or delete logged expenses.
+        </p>
+      </div>
+
+      <!-- Feature 2: Budget Monitoring -->
+      <div class="feature-box">
+        <div class="feature-icon-wrapper" style="background-color: var(--info-bg); color: var(--info);">
+          📊
+        </div>
+        <h3 class="feature-title">Budget Monitoring</h3>
+        <p class="feature-text">
+          Allocate monthly allowances across food, travel, education, and utilities. Real-time indicators alert you before category limits are breached.
+        </p>
+      </div>
+
+      <!-- Feature 3: Savings Goals -->
+      <div class="feature-box">
+        <div class="feature-icon-wrapper" style="background-color: var(--success-bg); color: var(--success);">
+          🎯
+        </div>
+        <h3 class="feature-title">Savings Goals</h3>
+        <p class="feature-text">
+          Set targets for emergency funds or new gadgets. Watch live progress bars grow and receive congratulatory milestones when targets are achieved.
+        </p>
+      </div>
+
+      <!-- Feature 4: Bill Reminders -->
+      <div class="feature-box">
+        <div class="feature-icon-wrapper" style="background-color: var(--warning-bg); color: var(--warning);">
+          ⏰
+        </div>
+        <h3 class="feature-title">Bill Reminders</h3>
+        <p class="feature-text">
+          Never miss an EMI, broadband, rent, or electricity bill again. Color-coded date calculations automatically flag upcoming and overdue payments.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works & Demonstration -->
+  <section id="how-it-works" style="background-color: #ffffff; padding: 4.5rem 2rem; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div class="section-header">
+        <span class="section-tag">Workflow</span>
+        <h2 class="section-title">Organized Financial Workflow</h2>
+        <p class="text-muted">Achieve total transparency over income, spending, and savings in three easy steps.</p>
+      </div>
+
+      <div class="form-row" style="text-align: center;">
+        <div class="card" style="border: none; box-shadow: none;">
+          <div style="font-size: 2rem; margin-bottom: 0.75rem;">1️⃣</div>
+          <h4>Plan Your Budget</h4>
+          <p class="text-muted" style="font-size: 0.9rem; margin-top: 0.5rem;">Input your expected monthly income and distribute planned allowances into essential categories.</p>
+        </div>
+
+        <div class="card" style="border: none; box-shadow: none;">
+          <div style="font-size: 2rem; margin-bottom: 0.75rem;">2️⃣</div>
+          <h4>Log Daily Transactions</h4>
+          <p class="text-muted" style="font-size: 0.9rem; margin-top: 0.5rem;">Quickly input every transaction with payment method tags and categorized receipts.</p>
+        </div>
+
+        <div class="card" style="border: none; box-shadow: none;">
+          <div style="font-size: 2rem; margin-bottom: 0.75rem;">3️⃣</div>
+          <h4>Analyze Visual Reports</h4>
+          <p class="text-muted" style="font-size: 0.9rem; margin-top: 0.5rem;">Inspect interactive Chart.js graphs and track progress towards all your personal savings milestones.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <div id="demo" class="cta-banner">
+    <h2>Ready to experience FinTrack?</h2>
+    <p>Jump straight into the interactive dashboard pre-populated with realistic sample data.</p>
+    <div class="d-flex justify-between align-center gap-2" style="justify-content: center; flex-wrap: wrap;">
+      <a href="dashboard.html" class="btn btn-primary">Open Interactive Dashboard</a>
+      <a href="login.html" class="btn btn-secondary">Sign In With Test Account</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="landing-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="index.html" class="landing-logo">
+          <span class="brand-icon">F</span>
+          <span>FinTrack</span>
+        </a>
+        <span class="footer-copy">Personal Financial Management System • College Web Technology Project</span>
+      </div>
+
+      <div class="d-flex gap-3">
+        <a href="login.html" class="text-muted" style="font-size: 0.9rem;">Login</a>
+        <a href="register.html" class="text-muted" style="font-size: 0.9rem;">Register</a>
+        <a href="dashboard.html" class="text-muted" style="font-size: 0.9rem;">Dashboard</a>
+        <a href="reports.html" class="text-muted" style="font-size: 0.9rem;">Reports</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

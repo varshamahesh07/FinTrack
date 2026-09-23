@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account – FinTrack</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <!-- Global Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Auth Stylesheet -->
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body class="auth-page">
+
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-brand">
+        <a href="index.html" class="brand-logo">
+          <span class="brand-icon">F</span>
+          <span>FinTrack</span>
+        </a>
+        <h1 class="auth-title">Create Account</h1>
+        <p class="auth-subtitle">Start planning, tracking, and reaching your financial targets</p>
+      </div>
+
+      <form id="register-form" novalidate>
+        <!-- Full Name Field -->
+        <div class="form-group">
+          <label for="register-name" class="form-label">Full Name</label>
+          <input
+            type="text"
+            id="register-name"
+            class="form-control"
+            placeholder="e.g. Alex Johnson"
+            required
+            autocomplete="name"
+          >
+          <div id="register-name-error" class="form-error"></div>
+        </div>
+
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="register-email" class="form-label">Email Address</label>
+          <input
+            type="email"
+            id="register-email"
+            class="form-control"
+            placeholder="e.g. student@college.edu"
+            required
+            autocomplete="email"
+          >
+          <div id="register-email-error" class="form-error"></div>
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="register-password" class="form-label">Password</label>
+          <div class="password-wrapper">
+            <input
+              type="password"
+              id="register-password"
+              class="form-control"
+              placeholder="At least 6 characters"
+              required
+              autocomplete="new-password"
+            >
+            <button type="button" class="password-toggle-btn" data-target="register-password">Show</button>
+          </div>
+          <div id="register-password-error" class="form-error"></div>
+        </div>
+
+        <!-- Confirm Password Field -->
+        <div class="form-group">
+          <label for="register-confirm-password" class="form-label">Confirm Password</label>
+          <div class="password-wrapper">
+            <input
+              type="password"
+              id="register-confirm-password"
+              class="form-control"
+              placeholder="Re-enter your password"
+              required
+              autocomplete="new-password"
+            >
+            <button type="button" class="password-toggle-btn" data-target="register-confirm-password">Show</button>
+          </div>
+          <div id="register-confirm-password-error" class="form-error"></div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary btn-block mb-2">Create My Account</button>
+      </form>
+
+      <div class="auth-footer-text">
+        Already have an account? <a href="login.html">Sign In</a>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <a href="index.html" class="auth-home-link">
+        ← Return to Landing Page
+      </a>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Savings Goals – FinTrack</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <!-- Global Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Dashboard Layout Stylesheet -->
+  <link rel="stylesheet" href="css/dashboard.css">
+  <style>
+    .goal-completed-border {
+      border: 2px solid var(--success);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-layout">
+    <div class="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <span class="brand-icon">F</span>
+          <span>FinTrack</span>
+        </a>
+        <button id="sidebar-close" class="sidebar-close-btn" aria-label="Close Sidebar">&times;</button>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="menu-category">Main Menu</li>
+        <li class="menu-item">
+          <a href="dashboard.html" class="menu-link">
+            <span class="menu-icon">📊</span>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="planning.html" class="menu-link">
+            <span class="menu-icon">📝</span>
+            <span>Financial Planning</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="expenses.html" class="menu-link">
+            <span class="menu-icon">💳</span>
+            <span>Daily Expenses</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="savings.html" class="menu-link active">
+            <span class="menu-icon">🎯</span>
+            <span>Savings</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="bills.html" class="menu-link">
+            <span class="menu-icon">⏰</span>
+            <span>Bills & Reminders</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="reports.html" class="menu-link">
+            <span class="menu-icon">📈</span>
+            <span>Reports</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- User Profile Preview & Logout -->
+      <div class="sidebar-footer">
+        <div class="user-profile-preview">
+          <div class="user-avatar">AJ</div>
+          <div class="user-info">
+            <div class="user-name">Alex Johnson</div>
+            <div class="user-role">Student Account</div>
+          </div>
+        </div>
+        <button class="btn-sidebar-logout">
+          <span>🚪</span> Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button id="menu-toggle" class="menu-toggle-btn" aria-label="Open Menu">☰</button>
+          <div class="topbar-title">Savings Goals</div>
+        </div>
+
+        <div class="topbar-right">
+          <span id="topbar-current-date" class="topbar-date">Loading date...</span>
+          <a href="bills.html" class="notification-bell-btn" title="Pending Bills Notifications">
+            <span>🔔</span>
+            <span id="topbar-alert-count" class="notification-badge" style="display: none;">0</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="dashboard-content">
+        <div class="page-header">
+          <div>
+            <h1>Personal Savings & Goals</h1>
+            <p>Define future financial targets, track percentage completion, and celebrate when milestones are reached.</p>
+          </div>
+        </div>
+
+        <!-- Savings Overview Metric Cards -->
+        <section class="stats-grid mb-3">
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Total Saved So Far</span>
+              <div class="metric-icon-box metric-icon-savings">💰</div>
+            </div>
+            <div id="savings-total-saved" class="metric-value">$0.00</div>
+            <div class="metric-footer">Across all active goals</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Total Cumulative Target</span>
+              <div class="metric-icon-box metric-icon-target">🎯</div>
+            </div>
+            <div id="savings-total-target" class="metric-value">$0.00</div>
+            <div class="metric-footer">Target milestones combined</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Goals Reached</span>
+              <div class="metric-icon-box metric-icon-income">🏆</div>
+            </div>
+            <div id="savings-completed-count" class="metric-value">0 / 0 Goals</div>
+            <div class="metric-footer">100% completed goals</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Overall Funding Ratio</span>
+              <div class="metric-icon-box metric-icon-budget">📈</div>
+            </div>
+            <div id="savings-overall-percent" class="metric-value">0%</div>
+            <div class="metric-footer">Weighted progress</div>
+          </div>
+        </section>
+
+        <div class="dashboard-row">
+          <!-- Active Goals Grid -->
+          <div>
+            <div class="card-header" style="border: none; padding-bottom: 0; margin-bottom: 1rem;">
+              <h3>Active Goals & Milestones</h3>
+              <span class="text-muted" style="font-size: 0.85rem;">Click +$50 / +$100 to quickly add savings</span>
+            </div>
+            <div id="savings-goals-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+              <!-- Rendered dynamically by js/savings.js -->
+            </div>
+          </div>
+
+          <!-- Add New Goal Form -->
+          <div>
+            <div class="card">
+              <div class="card-header">
+                <h3>Create New Goal</h3>
+                <span class="badge badge-info">Target</span>
+              </div>
+
+              <form id="add-goal-form">
+                <div class="form-group">
+                  <label for="goal-name" class="form-label">Goal Title</label>
+                  <input
+                    type="text"
+                    id="goal-name"
+                    class="form-control"
+                    placeholder="e.g. Study Abroad Deposit"
+                    required
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label for="goal-target" class="form-label">Target Amount ($)</label>
+                  <input
+                    type="number"
+                    id="goal-target"
+                    class="form-control"
+                    placeholder="e.g. 1500"
+                    min="1"
+                    step="10"
+                    required
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label for="goal-current" class="form-label">Initial Amount Saved ($)</label>
+                  <input
+                    type="number"
+                    id="goal-current"
+                    class="form-control"
+                    placeholder="e.g. 200"
+                    min="0"
+                    step="10"
+                    value="0"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label for="goal-deadline" class="form-label">Target Deadline</label>
+                  <input type="date" id="goal-deadline" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="goal-note" class="form-label">Note / Purpose</label>
+                  <input
+                    type="text"
+                    id="goal-note"
+                    class="form-control"
+                    placeholder="e.g. For semester capstone project"
+                  >
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                  + Add Savings Goal
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/savings.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+/* ==========================================================================
+   FinTrack - Personal Financial Management System
+   Authentication Stylesheet (auth.css)
+   ========================================================================== */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  background: radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 40%),
+              var(--bg-app);
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 440px;
+}
+
+.auth-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 2.25rem 2rem;
+}
+
+.auth-brand {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.auth-brand .brand-logo {
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  color: var(--dark-navy);
+}
+
+.auth-title {
+  font-size: 1.5rem;
+  color: var(--dark-navy);
+  margin-bottom: 0.35rem;
+}
+
+.auth-subtitle {
+  font-size: 0.9rem;
+  color: var(--slate-500);
+}
+
+.auth-footer-text {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--slate-600);
+}
+
+.auth-footer-text a {
+  color: var(--primary-hover);
+  font-weight: 600;
+}
+
+.auth-home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 1.25rem;
+  font-size: 0.85rem;
+  color: var(--slate-500);
+}
+.auth-home-link:hover {
+  color: var(--dark-navy);
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--slate-400);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.25rem;
+}
+.password-toggle-btn:hover {
+  color: var(--slate-700);
+}
