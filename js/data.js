@@ -9,14 +9,14 @@
 (function (window) {
   'use strict';
 
-  var STORAGE_KEY = 'fintrack_demo_data_v1';
+  var STORAGE_KEY = 'fintrack_demo_data_v2';
 
   // Realistic sample financial data suitable for a college student / young professional
   var defaultData = {
     user: {
       name: 'Alex Johnson',
       email: 'alex.johnson@example.com',
-      currency: '$'
+      currency: '₹'
     },
     budget: {
       monthlyIncome: 5000,
@@ -257,7 +257,7 @@
       }
 
       return {
-        currency: (data.user && data.user.currency) || '$',
+        currency: (data.user && data.user.currency) || '₹',
         monthlyIncome: monthlyIncome,
         plannedExpenses: plannedExpenses,
         actualExpenses: actualExpenses,

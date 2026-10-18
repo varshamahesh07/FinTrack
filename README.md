@@ -101,7 +101,7 @@ FinTrack/
 ### 6. Savings Goals (`savings.html`)
 - Visual progress bars with percentage indicators.
 - **Appreciation Milestone Banner**: Automatically displayed when 100% of a target is achieved.
-- Quick `+$50` and `+$100` deposit buttons to test goal progression.
+- Quick `+₹50` and `+₹100` deposit buttons to test goal progression.
 
 ### 7. Bills & Reminders (`bills.html`)
 - Date-based status calculation (**Overdue**, **Due Today**, **Due in X Days**, **Paid**).

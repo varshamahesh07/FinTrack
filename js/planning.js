@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
           window.FinApp.formatCurrency(Math.abs(unallocatedRemaining)) + '. Consider reducing non-essential categories.';
       } else if (unallocatedRemaining === 0) {
         statusMessage.className = 'alert alert-success';
-        statusMessage.innerHTML = '<strong>Zero-Based Budget Achieved!</strong> Every dollar of your income has been planned towards expenses or savings.';
+        statusMessage.innerHTML = '<strong>Zero-Based Budget Achieved!</strong> Every rupee of your income has been planned towards expenses or savings.';
       } else {
         statusMessage.className = 'alert alert-info';
         statusMessage.innerHTML = '<strong>Buffer Remaining:</strong> You have ' + window.FinApp.formatCurrency(unallocatedRemaining) +

@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
             callbacks: {
               label: function (context) {
                 var val = context.raw;
-                return ' ' + context.label + ': $' + Number(val).toLocaleString(undefined, { minimumFractionDigits: 2 });
+                return ' ' + context.label + ': ₹' + Number(val).toLocaleString('en-IN', { minimumFractionDigits: 2 });
               }
             }
           }
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function () {
             beginAtZero: true,
             ticks: {
               callback: function (val) {
-                return '$' + val;
+                return '₹' + val.toLocaleString('en-IN');
               }
             },
             grid: {

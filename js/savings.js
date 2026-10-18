@@ -97,8 +97,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         '<div class="d-flex justify-between align-center gap-1 mt-2">' +
           '<div class="d-flex gap-1">' +
-            '<button class="btn btn-sm btn-secondary btn-deposit-quick" data-id="' + g.id + '" data-amount="50">+ $50</button>' +
-            '<button class="btn btn-sm btn-secondary btn-deposit-quick" data-id="' + g.id + '" data-amount="100">+ $100</button>' +
+            '<button class="btn btn-sm btn-secondary btn-deposit-quick" data-id="' + g.id + '" data-amount="50">+ ₹50</button>' +
+            '<button class="btn btn-sm btn-secondary btn-deposit-quick" data-id="' + g.id + '" data-amount="100">+ ₹100</button>' +
           '</div>' +
           '<button class="btn btn-sm btn-outline text-danger btn-delete-goal" data-id="' + g.id + '" title="Delete Goal">Delete</button>' +
         '</div>' +

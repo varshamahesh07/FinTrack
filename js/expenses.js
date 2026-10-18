@@ -2,27 +2,21 @@
  * FinTrack - Personal Financial Management System
  * Daily Expense Management & Table Operations (js/expenses.js)
  */
-
 document.addEventListener('DOMContentLoaded', function () {
   'use strict';
-
   if (!window.FinData || !window.FinApp) {
     console.error('FinTrack core scripts not loaded.');
     return;
   }
-
   var expenseForm = document.getElementById('expense-form');
   var expenseTableBody = document.getElementById('expenses-table-body');
   var searchInput = document.getElementById('expense-search');
-  var categoryFilter = document.getElementById('expense-filter-category');
-
+  var categoryFilter = document.getElementById('expense-filter-category');   
   var currentEditId = null;
-
   // Render expenses in table
   function renderExpensesTable() {
     var data = window.FinData.get();
     var list = data.expenses || [];
-
     // Filter by category
     var selectedCat = categoryFilter ? categoryFilter.value : '';
     if (selectedCat) {

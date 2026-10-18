@@ -9,9 +9,9 @@
   var FinApp = {
     // Format numeric values into currency representation
     formatCurrency: function (amount, currency) {
-      var curr = currency || (window.FinData && window.FinData.get().user.currency) || '$';
+      var curr = currency || (window.FinData && window.FinData.get().user.currency) || '₹';
       var num = Number(amount) || 0;
-      return curr + num.toLocaleString('en-US', {
+      return curr + num.toLocaleString('en-IN', {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
       });

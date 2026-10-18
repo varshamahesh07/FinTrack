@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
         labels: labels,
         datasets: [
           {
-            label: 'Planned Budget ($)',
+            label: 'Planned Budget (₹)',
             data: plannedData,
             backgroundColor: 'rgba(59, 130, 246, 0.65)',
             borderColor: '#3b82f6',
@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
             borderRadius: 6
           },
           {
-            label: 'Actual Expenses ($)',
+            label: 'Actual Expenses (₹)',
             data: actualData,
             backgroundColor: 'rgba(16, 185, 129, 0.75)',
             borderColor: '#10b981',
@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function () {
           tooltip: {
             callbacks: {
               label: function (context) {
-                return ' ' + context.dataset.label + ': $' + context.raw.toLocaleString();
+                return ' ' + context.dataset.label + ': ₹' + Number(context.raw).toLocaleString('en-IN');
               }
             }
           }
@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
             beginAtZero: true,
             ticks: {
               callback: function (val) {
-                return '$' + val;
+                return '₹' + val.toLocaleString('en-IN');
               }
             },
             grid: {
