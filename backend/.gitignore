@@ -1,0 +1,20 @@
+target/
+.env
+.env.*
+!.env.example
+config/database.php
+config/database.local.php
+*.log
+
+# Local PHP database configuration
+/config/database.php
+/config/database.local.php
+
+# Legacy PHP files (Java Spring Boot backend is used for deployment)
+/api/
+/config/
+/database/
+/frontend-integration/
+/helpers/
+/models/
+/test_db.php
